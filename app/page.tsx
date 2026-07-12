@@ -1,30 +1,27 @@
-import Link from 'next/link'
+import Link from 'next/link';
+import Image from 'next/image';
+
+import profilePic from '@/public/avatar.png'
+
+import LikeButton from '@/app/components/LikeButton';
 
 export default function Home() {
-  // return <h1>src 폴더 없어도 잘 동작합니다</h1>
   return (
-    <div>
-      <h1>홈페이지</h1>
-      <nav>
-        <Link href="/about">회사 소개 가기</Link>
-        <br />
-        <Link href="/contact">연락처로 가기</Link>
-      </nav>
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
+      <div className="bg-white p-8 rounded-3xl shadow-xl max-w-sm w-full text-center border border-slate-100">
+        <div className="w-24 h-24 mx-auto rounded-full overflow-hidden shadow-md mb-4">
+          <Image src={profilePic} alt="프로필 사진" width={96} height={96} />
+        </div>
+        <h1 className="text-2xl font-bold text-slate-800">부쳇</h1>
+        <p className="text-sm text-indigo-600 font-medium mb-6">웹개발자</p>
+        
+        <LikeButton />
 
-      <div className="p-10">
-        <h1 className="text-5xl font-extrabold text-indigo-500 tracking-tight">
-          Next.js-Tailwind v4
-        </h1>
-        <p className="mt-4 text-lg text-slate-6000">
-          설정 파일 없이 바로 적용되는 TailwindCSS v4를 Next.js 14에서 사용해보세요.
-        </p>
-        <button className="mt-6 bg-indigo-600 text-white px-8 py-3 rounded-xl shadow-lg hover:bg-indigo-700 active:scale-95 transition-all">
-          시작하기
-        </button>
-
-        <p className="text-brand">안녕하세요1</p>
-        <p className="text-brand bg-brand">안녕하세요2</p>
+        <div className="mt-6 space-y-3">
+          <Link href="https://github.com" className="block bg-slate-900 text-white py-3 rounded-xl font-medium active:scale-95 transition-all hover:bg-slate-800">GitHub 방문하기</Link>
+          <Link href="/about" className="block bg-slate-100 text-slate-700 py-3 rounded-xl font-medium active:scale-95 transition-all hover:bg-slate-200">포트폴리오 상세보기</Link>
+        </div>
       </div>
     </div>
-  )
+  );
 }
