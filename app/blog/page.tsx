@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const posts = [
     { id: 1, title: "첫 번째 포스트", content: "첫 번째 포스트 내용입니다." },
@@ -7,11 +10,26 @@ const posts = [
 ]
 
 export default function blog() {
+    const router = useRouter(); // 리모컨(router 객체)을 가져옵니다.
+    
+    const handleCreatePost = () => {
+        // 가상의 로직 : 글쓰기 권한 체크
+        alert("게시글 저장에 성공하였습니다! 목록으로 돌아갑니다.");
+
+        // 페이지이동
+        router.push("/blog"); // push()를 사용하여 페이지 이동
+    }
+
     return (
         <div className="max-w-2xl max-auto mt-10 p-4">
-            <h1 className="text-3xl font-extrabold text-slate-800 mb-6 border-b pb-4">
+            <h1 className="text-3xl font-extrabold text-slate-800 mb-6 border-b pb-4 text-white">
                 최신 블로그 글목록
             </h1>
+
+            <button className="text-white bg-indigo-600 px-4 py-2 rounded-lg mb-6 cursor-pointer hover:bg-indigo-700 active:scale-95 transition-all"
+                    onClick={handleCreatePost}>
+                글쓰기 완료 테스트
+            </button>
 
             <div className="space-y-4">
                 {posts.map((post) => (

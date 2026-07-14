@@ -44,6 +44,7 @@ export default function RootLayout({
           <div className="flex gap-6 font-semibold">
             <Link href="/" className="hover:text-indigo-200 transition">홈 (Home)</Link>
             <Link href="/about" className="hover:text-indigo-200 transition">회사소개 (About)</Link>
+            <Link href="/blog" className="hover:text-indigo-200 transition">블로그 (Blog)</Link>
           </div>
         </nav>
 

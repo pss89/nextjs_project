@@ -1,4 +1,7 @@
+// "use client";
+
 import Link from "next/link";
+// import { useRouter } from "next/navigation";
 
 export default async function BlogDetailPage({ 
     params,
@@ -6,6 +9,8 @@ export default async function BlogDetailPage({
     params: Promise<{ id: string }>;
 }>) {
     const resolvedParams = await params;
+
+    // const router = useRouter(); // 리모컨(router 객체)을 가져옵니다.
 
     return (
         <div className="max-w-md max-auto mt-10 p-6 bg-white rounded-2xl shadow-md border border-slate-100">
@@ -23,6 +28,10 @@ export default async function BlogDetailPage({
             <Link href="/blog" className="inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition mt-4">
                 블로그 글목록으로 돌아가기 -&gt;
             </Link>
+            {/* <button className="inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition mt-4"
+                    onClick={() => router.back()}>
+                블로그 글목록으로 돌아가기 -&gt;
+            </button> */}
         </div>
     );
 }
