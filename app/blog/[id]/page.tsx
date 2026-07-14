@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default async function BlogDetailPage({ 
     params,
 }: Readonly<{
@@ -17,6 +19,10 @@ export default async function BlogDetailPage({
                 주소창의 숫자를 다른 글자나 숫자로 바꿔보세요.
                 화면의 숫자가 실시간으로 변하는것을 볼수있습니다.
             </p>
+
+            <Link href="/blog" className="inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition mt-4">
+                블로그 글목록으로 돌아가기 -&gt;
+            </Link>
         </div>
     );
 }
