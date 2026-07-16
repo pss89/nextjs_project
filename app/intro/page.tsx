@@ -1,3 +1,4 @@
+// 가급적이면 tailwindcss 를 사용하지만 추가적으로 처리하기 위한 css 파일 설정을 위해 처리
 import styles from './intro.module.css'
 
 export default function IntroPage() {

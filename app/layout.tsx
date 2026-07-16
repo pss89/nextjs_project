@@ -28,7 +28,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Noto_Sans_KR } from 'next/font/google';
 import "./globals.css";
+
+// 폰트 객체 생성 및 옵션 설정
+const notoSansKr = Noto_Sans_KR({
+  subsets: ['latin'], // 영문 서브셋으로 용량 최적화 (한글은 기본 지원)
+  weight: ['400', '700'], // 사용할 폰트 굵기 지정
+  display: 'swap', // 폰트 로드 전 기본 폰트 표시
+});
 
 export default function RootLayout({
   children,
@@ -39,7 +47,8 @@ export default function RootLayout({
 
   return (
     <html lang="ko">
-      <body className="bg-slate-100 min-h-screen flex flex-col m-0 font-sans">
+      {/* <body className="bg-slate-100 min-h-screen flex flex-col m-0 font-sans"> */}
+      <body className={`bg-slate-100 min-h-screen flex flex-col m-0 ${notoSansKr.className}`}>
         <nav className="bg-indigo-600 text-white p-6 shadow-md flex flex-col md:flex-row md:items-center md:justify-between">
           <div className="flex gap-6 font-semibold">
             <Link href="/" className="hover:text-indigo-200 transition">홈 (Home)</Link>
