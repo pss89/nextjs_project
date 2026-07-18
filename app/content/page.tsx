@@ -1,6 +1,11 @@
 // ssr (server side rendering) 방식으로 데이터를 가져오는 페이지
 
 export default async function ContentPage() {
+    const isError = Math.random() > 0.5; // 랜덤으로 에러를 발생시키는 코드
+    if (isError) {
+        throw new Error("백엔드 서버에서 데이터를 가져오는데 실패했습니다.");
+    }
+
     const response = await fetch("https://jsonplaceholder.typicode.com/posts");
     const posts = await response.json();
 
