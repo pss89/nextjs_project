@@ -22,6 +22,11 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'www.news1.kr',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.dog.ceo',
+        pathname: '/**',
       }
     ]
   }
