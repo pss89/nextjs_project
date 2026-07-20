@@ -15,7 +15,7 @@ export default async function CachedDog() {
                 <br />
                 새로고침해도 <strong>같은 강아지</strong>가 나옵니다!
             </p>
-            <Image src={data.message} alt="cached dog" width={320} height={240} style={{borderRadius:"8px", objectFit:"cover"}} />
+            <Image src={data.message} alt="cached dog" loading="eager" width={320} height={240} style={{borderRadius:"8px", objectFit:"cover"}} />
             <p style={{fontSize:"12px", color:"#999", wordBreak:"break-all"}}>
                 {data.message}
             </p>

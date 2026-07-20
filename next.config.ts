@@ -21,12 +21,14 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'www.news1.kr',
+        port: '',
         pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'images.dog.ceo',
-        pathname: '/**',
+        port: '',
+        pathname: '/breeds/**',
       }
     ]
   }

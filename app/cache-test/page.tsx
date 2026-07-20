@@ -1,5 +1,6 @@
 import CachedDog from "@/components/CachedDog";
 import NoCachedDog from "@/components/NoCachedDog"
+import IsrCachedDog from "@/components/IsrCachedDog";
 
 export default function Home() {
     return (
@@ -12,6 +13,7 @@ export default function Home() {
             <div style={{display:"flex", gap:"24px", flexWrap:"wrap"}}>
                 <CachedDog />
                 <NoCachedDog />
+                <IsrCachedDog />
             </div>
         </main>
     )
