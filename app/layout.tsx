@@ -45,10 +45,11 @@ export default function RootLayout({
 }>) {
   const [inputText, setInputText] = useState("");
 
+  // suppressHydrationWarning 속성은 클라이언트와 서버 간의 HTML 불일치로 인한 경고를 억제하는 데 사용됩니다.
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       {/* <body className="bg-slate-100 min-h-screen flex flex-col m-0 font-sans"> */}
-      <body className={`bg-slate-100 min-h-screen flex flex-col m-0 ${notoSansKr.className}`}>
+      <body className={`bg-slate-100 min-h-screen flex flex-col m-0 ${notoSansKr.className}`} suppressHydrationWarning>
         <nav className="bg-indigo-600 text-white p-6 shadow-md flex flex-col md:flex-row md:items-center md:justify-between">
           <div className="flex gap-6 font-semibold">
             <Link href="/" className="hover:text-indigo-200 transition">홈 (Home)</Link>
