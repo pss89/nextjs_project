@@ -1,5 +1,6 @@
 "use server";
 
+// prevState : 이전 상태값, formData : form submit 시 전달되는 데이터
 export async function createPostWithValidation(prevState : any,  formData: FormData) {
   const title = formData.get("title") as string; // type 단언 (assertion)
   const content = formData.get("content") as string; // type 단언 (assertion)
