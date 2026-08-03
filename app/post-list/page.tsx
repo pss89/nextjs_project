@@ -21,10 +21,12 @@ export default async function PostList() {
         <div className="space-y-4">
           {posts.map((post) => (
             <article key={post.id} className="p-6 bg-white rounded-3xl border border-slate-700 shadow-sm">
-              <h2 className="text-lg font-bold text-slate-800 mb-2">{post.title}</h2>
-              <p className="text-slate-600 text-sm leading-relaxed line-clamp-3 mb-4">
-                {post.content}
-              </p>
+              <Link href={`/post-detail/${post.id}`} className="block group">
+                <h2 className="text-lg font-bold text-slate-800 mb-2">{post.title}</h2>
+                <p className="text-slate-600 text-sm leading-relaxed line-clamp-3 mb-4 group-hover:text-indigo-600 transition-colors mb-2">
+                  {post.content}
+                </p>
+              </Link>
               <div className="text-[11px] font-medium text-slate-400 font-mono">
                 {new Date(post.createdAt).toLocaleDateString('ko-KR', {
                   year: 'numeric',
