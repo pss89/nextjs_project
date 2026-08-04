@@ -1,6 +1,8 @@
 "use server";
 
 import { prisma } from "../../lib/prisma";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 // prevState : 이전 상태값, formData : form submit 시 전달되는 데이터
 export async function createPostWithValidation(prevState : any,  formData: FormData) {
@@ -36,6 +38,9 @@ export async function createPostWithValidation(prevState : any,  formData: FormD
     console.error("failed to create post:", error);
     return { error: "글을 등록하는 중 오류가 발생했습니다.", success: false }
   }
+
+  revalidatePath("/");
+  redirect("/post-list");
 
   return {
     success : true,
