@@ -29,6 +29,11 @@ export default async function PostDeail({
           전체목록으로 돌아가기
       </Link>
 
+      <Link href={`/post-detail/${postId}/edit`} className="inline-block text-xs font-semibold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-lg ml-2 mb-6
+        horver:bg-indigo-100 transition-colors">
+          ✍️ 글 수정하기
+      </Link>
+
       <form action={deleteActionWithId}>
         <button type="submit" className="text-xs font-bold text-rose-600 bg-rose-50 px-3 py-1.5 rounded-lg hover:bg-rose-100 action:scale-99 transition-all mb-6">
             🗑️ 이 글 삭제하기
