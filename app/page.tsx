@@ -32,7 +32,7 @@ import About from "./about/page";
 
 export default function Home() {
   return (
-    <div className="bg-amber-50 border-2 border-amber-200 p-8 rounded-2xl shadow-sm max-w-2xl mx-auto">
+    <div className="bg-amber-50 border-2 border-amber-200 p-8 rounded-2xl shadow-sm max-w-2xl mx-auto mt-8">
       <div className="inline-block bg-amber-200 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-full mb-4">홈페이지
         page.tsx (Home)
       </div>

@@ -24,12 +24,13 @@
 //   );
 // }
 
-"use client";
+// "use client";
 
-import { useState } from "react";
+// import { useState } from "react";
 import Link from "next/link";
 import { Noto_Sans_KR } from 'next/font/google';
 import "./globals.css";
+import { auth, signOut } from "@/auth";
 
 // 폰트 객체 생성 및 옵션 설정
 const notoSansKr = Noto_Sans_KR({
@@ -38,43 +39,80 @@ const notoSansKr = Noto_Sans_KR({
   display: 'swap', // 폰트 로드 전 기본 폰트 표시
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly <{
   children: React.ReactNode;
 }>) {
-  const [inputText, setInputText] = useState("");
+  // const [inputText, setInputText] = useState("");
+
+  const session = await auth();
+  async function handleSignOut() {
+    "use server";
+    await signOut({ redirectTo: "/" });
+  }
 
   // suppressHydrationWarning 속성은 클라이언트와 서버 간의 HTML 불일치로 인한 경고를 억제하는 데 사용됩니다.
   return (
-    <html lang="ko" suppressHydrationWarning>
-      {/* <body className="bg-slate-100 min-h-screen flex flex-col m-0 font-sans"> */}
-      <body className={`bg-slate-100 min-h-screen flex flex-col m-0 ${notoSansKr.className}`} suppressHydrationWarning>
-        <nav className="bg-indigo-600 text-white p-6 shadow-md flex flex-col md:flex-row md:items-center md:justify-between">
-          <div className="flex gap-6 font-semibold">
-            <Link href="/" className="hover:text-indigo-200 transition">홈 (Home)</Link>
-            <Link href="/about" className="hover:text-indigo-200 transition">회사소개 (About)</Link>
-            <Link href="/blog" className="hover:text-indigo-200 transition">블로그 (Blog)</Link>
+    <html>
+      <body style={{ padding: '0 20px', maxWidth: '800px', margin: '0 auto' }}>
+        <header style={{ display: 'flex', justifyContent: 'space-between', padding: '20px 0', borderBottom: '1px solid #ddd' }}>
+          <Link href="/" style={{ fontWeight: 'bold', textDecoration: 'none' }}>
+            🚀 Auth Blog
+          </Link>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+            {session ? 
+              (
+              <>
+                <span><b>{session.user?.name}</b></span>
+                <form action={handleSignOut}>
+                  <button type="submit">로그아웃</button>
+                </form>
+              </>
+              )
+              :
+              (
+                <Link href="/api/auth/signin">로그인하기</Link>
+              ) 
+            }
           </div>
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-indigo-200 bg-indigo-800 px-2 py-1 rounded">Layout State</span>
-          <input type="text" placeholder="여기에 글을 쓰고 페이지를 이동해보세요..."
-            value={inputText} onChange={(e) => setInputText(e.target.value)} 
-            className="px-3 py-1.5 rounded-lg text-slate-800 bg-white border-none text-sm w-64 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
-            />
-        </div>
-
-        <main className="flex-1 p-8">
+        </header>
+        
+        <main style={{ padding: '20px 0'}}>
           {children}
         </main>
 
-        <footer className="bg-slate-800 text-slate-400 text-center py-4 text-sm border-t border-slate-700 mt-auto">
-          @ 2026 Next.js 마스터클래스
-        </footer>
-
       </body>
     </html>
+    // <html lang="ko" suppressHydrationWarning>
+    //   {/* <body className="bg-slate-100 min-h-screen flex flex-col m-0 font-sans"> */}
+    //   <body className={`bg-slate-100 min-h-screen flex flex-col m-0 ${notoSansKr.className}`} suppressHydrationWarning>
+    //     <nav className="bg-indigo-600 text-white p-6 shadow-md flex flex-col md:flex-row md:items-center md:justify-between">
+    //       <div className="flex gap-6 font-semibold">
+    //         <Link href="/" className="hover:text-indigo-200 transition">홈 (Home)</Link>
+    //         <Link href="/about" className="hover:text-indigo-200 transition">회사소개 (About)</Link>
+    //         <Link href="/blog" className="hover:text-indigo-200 transition">블로그 (Blog)</Link>
+    //       </div>
+    //     </nav>
+
+    //     {/* <div className="flex items-center gap-2">
+    //       <span className="text-xs text-indigo-200 bg-indigo-800 px-2 py-1 rounded">Layout State</span>
+    //       <input type="text" placeholder="여기에 글을 쓰고 페이지를 이동해보세요..."
+    //         value={inputText} onChange={(e) => setInputText(e.target.value)} 
+    //         className="px-3 py-1.5 rounded-lg text-slate-800 bg-white border-none text-sm w-64 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+    //         />
+    //     </div> */}
+
+    //     <main className="flex-1 p-8">
+    //       {children}
+    //     </main>
+
+    //     <footer className="bg-slate-800 text-slate-400 text-center py-4 text-sm border-t border-slate-700 mt-auto">
+    //       @ 2026 Next.js 마스터클래스
+    //     </footer>
+
+    //   </body>
+    // </html>
   )
 }
